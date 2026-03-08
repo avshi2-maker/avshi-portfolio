@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d0f14">
 <title>Avshi Sapir — Developer Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1a1e28;--border:#252a38;--accent:#f0c040;--accent2:#4fc3f7;--accent3:#81c784;--text:#e8eaf0;--muted:#8892a4;--dim:#444d60}
-  *{margin:0;padding:0;box-sizing:border-box}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  a,button{touch-action:manipulation}
   body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,192,64,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
   .container{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 2rem}
@@ -103,7 +107,103 @@
   .hero{animation:fadeUp .5s ease both}
   .project-card{animation:fadeUp .35s ease both}
   @media print{body{background:white;color:black}body::before{display:none}.project-detail{display:block!important}.expand-btn,.filter-bar,.link-add,.modal-overlay{display:none!important}}
-  @media(max-width:600px){.project-card{grid-template-columns:1fr}.project-right{flex-direction:row;align-items:center}}
+
+  /* ── TABLET ── */
+  @media(max-width:768px){
+    .container{padding:0 1.25rem}
+    .hero{padding:2.5rem 0 2rem}
+    .hero h1{font-size:2.6rem}
+    .hero-meta{gap:1.25rem}
+    .stats-bar{grid-template-columns:repeat(3,1fr)}
+    .section-header{padding:2rem 0 1.25rem}
+    .detail-grid{grid-template-columns:1fr}
+    .modal{width:95vw;padding:1.5rem}
+  }
+
+  /* ── MOBILE ── */
+  @media(max-width:480px){
+    html{-webkit-text-size-adjust:100%}
+    .container{padding:0 1rem}
+
+    /* Hero */
+    .hero{padding:2rem 0 1.75rem}
+    .hero h1{font-size:2.2rem;line-height:1.1}
+    .hero-subtitle{font-size:.92rem}
+    .hero-bio{font-size:.92rem;line-height:1.75;padding-left:1rem}
+    .hero-meta{gap:1rem;grid-template-columns:1fr 1fr;display:grid}
+    .meta-value{font-size:.85rem}
+
+    /* Objective box */
+    .objective-box{padding:1rem 1rem 1rem 1rem}
+    .objective-text{font-size:.9rem;line-height:1.75}
+
+    /* Social links — stack on mobile */
+    .social-links{flex-direction:column;gap:.6rem}
+    .social-link{padding:.65rem 1rem;font-size:.75rem;text-align:center;justify-content:center;display:flex}
+
+    /* Skills */
+    .skills-strip{padding:1.25rem 0}
+    .skill-badge{font-size:.68rem;padding:.28rem .75rem}
+
+    /* Stats — 2 columns on mobile */
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .stat-num{font-size:1.7rem}
+    .stat-desc{font-size:.65rem}
+
+    /* Section headers */
+    .section-header{padding:1.75rem 0 1rem}
+    .section-title{font-size:1.25rem}
+
+    /* Filter bar — horizontal scroll */
+    .filter-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem;gap:.4rem;scrollbar-width:none}
+    .filter-bar::-webkit-scrollbar{display:none}
+    .filter-btn{white-space:nowrap;flex-shrink:0;font-size:.66rem;padding:.38rem .8rem}
+
+    /* Project cards — full single column */
+    .project-card{grid-template-columns:1fr;padding:1.25rem 1rem;gap:.6rem}
+    .project-right{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
+    .project-name{font-size:1.05rem}
+    .project-short{font-size:.83rem}
+
+    /* Expand button — larger tap target */
+    .expand-btn{padding:.5rem .9rem;font-size:.65rem;min-height:36px}
+
+    /* Detail sections */
+    .detail-grid{grid-template-columns:1fr;gap:.9rem}
+    .detail-block p{font-size:.82rem}
+
+    /* Project links — stack on very small screens */
+    .project-links{gap:.45rem}
+    .project-link{padding:.45rem .8rem;font-size:.68rem;min-height:38px;display:inline-flex;align-items:center}
+
+    /* Modal — full screen on mobile */
+    .modal-overlay{align-items:flex-end}
+    .modal{width:100vw;max-width:100vw;border-radius:8px 8px 0 0;padding:1.5rem 1.25rem;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+    .modal h3{font-size:1.1rem}
+    .modal-field input{font-size:16px;padding:.65rem .75rem} /* 16px prevents iOS zoom */
+    .btn-save,.btn-cancel{min-height:44px;font-size:.78rem;padding:.6rem 1.1rem}
+
+    /* Footer — stack */
+    .footer{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.5rem 0;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+    .footer-left{font-size:.65rem;line-height:1.6}
+    .footer-right{gap:1rem;flex-wrap:wrap}
+    .footer-link{font-size:.7rem;min-height:36px;display:inline-flex;align-items:center}
+  }
+
+  /* ── VERY SMALL (iPhone SE) ── */
+  @media(max-width:375px){
+    .hero h1{font-size:1.9rem}
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .hero-meta{grid-template-columns:1fr}
+  }
+
+  /* ── iOS SAFE AREA (notch/home bar) ── */
+  @supports(padding:max(0px)){
+    .container{
+      padding-left:max(1rem, env(safe-area-inset-left));
+      padding-right:max(1rem, env(safe-area-inset-right));
+    }
+  }
 </style>
 </head>
 <body>
