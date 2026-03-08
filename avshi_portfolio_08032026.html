@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d0f14">
+<title>Avshi Sapir — Developer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1a1e28;--border:#252a38;--accent:#f0c040;--accent2:#4fc3f7;--accent3:#81c784;--text:#e8eaf0;--muted:#8892a4;--dim:#444d60}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  a,button{touch-action:manipulation}
+  body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,192,64,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+  .container{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 2rem}
+  .hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border)}
+  .hero-tag{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+  .hero-tag::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--accent)}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,5rem);line-height:1.05;margin-bottom:.4rem}
+  .hero h1 em{color:var(--accent);font-style:italic}
+  .hero-subtitle{font-size:1.05rem;color:var(--muted);margin-bottom:1.5rem}
+  .hero-bio{max-width:700px;font-size:1rem;line-height:1.85;color:var(--text);margin-bottom:2rem;border-left:2px solid var(--accent);padding-left:1.5rem}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:2rem;margin-bottom:1.5rem}
+  .meta-item{display:flex;flex-direction:column;gap:.2rem}
+  .meta-label{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase}
+  .meta-value{font-size:.9rem;color:var(--accent2);font-weight:500}
+  .objective-box{margin-bottom:2rem;padding:1.25rem 1.5rem;background:rgba(240,192,64,.07);border:1px solid rgba(240,192,64,.35);border-left:3px solid var(--accent);border-radius:3px}
+  .objective-label{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.65rem}
+  .objective-text{font-size:.97rem;line-height:1.85;color:var(--text)}
+  .objective-text strong{color:var(--accent);font-weight:600}
+  .social-links{display:flex;gap:1rem;flex-wrap:wrap}
+  .social-link{font-family:'DM Mono',monospace;font-size:.72rem;padding:.4rem 1.1rem;border:1px solid;text-decoration:none;border-radius:2px;transition:all .2s}
+  .sl-github{border-color:var(--dim);color:var(--muted)}.sl-github:hover{border-color:var(--text);color:var(--text)}
+  .sl-facebook{border-color:#1877f2;color:#1877f2}.sl-facebook:hover{background:rgba(24,119,242,.1)}
+  .sl-email{border-color:var(--accent);color:var(--accent)}.sl-email:hover{background:rgba(240,192,64,.08)}
+  .sl-phone{border-color:var(--accent3);color:var(--accent3)}.sl-phone:hover{background:rgba(129,199,132,.08)}
+  .sl-whatsapp{border-color:#25d366;color:#25d366;font-weight:500}.sl-whatsapp:hover{background:rgba(37,211,102,.1)}
+  .footer-whatsapp{color:#25d366!important}.footer-whatsapp:hover{color:#25d366!important}
+  .skills-strip{padding:1.75rem 0;border-bottom:1px solid var(--border)}
+  .skills-scroll{display:flex;gap:.6rem;flex-wrap:wrap}
+  .skill-badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:.3rem .85rem;border-radius:2px;letter-spacing:.04em}
+  .skill-badge.a{background:rgba(240,192,64,.12);color:var(--accent);border:1px solid rgba(240,192,64,.3)}
+  .skill-badge.b{background:rgba(79,195,247,.1);color:var(--accent2);border:1px solid rgba(79,195,247,.25)}
+  .skill-badge.c{background:rgba(129,199,132,.1);color:var(--accent3);border:1px solid rgba(129,199,132,.25)}
+  .section-header{display:flex;align-items:center;gap:1rem;padding:2.5rem 0 1.5rem}
+  .section-num{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--dim)}
+  .section-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--text);white-space:nowrap}
+  .section-line{flex:1;height:1px;background:var(--border)}
+  .stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2.5rem}
+  .stat-cell{background:var(--bg2);padding:1.25rem;text-align:center}
+  .stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);display:block}
+  .stat-desc{font-size:.7rem;color:var(--muted);margin-top:.2rem;font-family:'DM Mono',monospace}
+  .filter-bar{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+  .filter-btn{font-family:'DM Mono',monospace;font-size:.68rem;padding:.38rem .9rem;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;border-radius:2px;transition:all .2s;letter-spacing:.04em}
+  .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(240,192,64,.08)}
+  .projects-grid{display:grid;gap:0;background:var(--bg2);border:1px solid var(--border);margin-bottom:3rem;counter-reset:project-counter}
+  .project-card{background:var(--bg2);padding:1.5rem 2rem;transition:background .2s;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;counter-increment:project-counter;border-bottom:1px solid var(--border)}
+  .project-card:last-child{border-bottom:none}
+  .project-card:hover{background:var(--bg3)}
+  .project-card.hidden{display:none;counter-increment:none}
+  .project-tags{display:flex;gap:.4rem;margin-bottom:.55rem;flex-wrap:wrap}
+  .project-tag{font-family:'DM Mono',monospace;font-size:.6rem;padding:.18rem .55rem;border-radius:2px;letter-spacing:.04em}
+  .tag-crm{background:rgba(240,192,64,.12);color:var(--accent)}
+  .tag-tcm{background:rgba(129,199,132,.12);color:var(--accent3)}
+  .tag-tool{background:rgba(79,195,247,.12);color:var(--accent2)}
+  .tag-mobile{background:rgba(206,147,216,.12);color:#ce93d8}
+  .tag-legal{background:rgba(255,138,128,.12);color:#ff8a80}
+  .tag-ai{background:rgba(255,183,77,.12);color:#ffb74d}
+  .tag-pres{background:rgba(128,203,196,.12);color:#80cbc4}
+  .tag-site{background:rgba(159,168,218,.12);color:#9fa8da}
+  .project-name{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--text);margin-bottom:.3rem;display:flex;align-items:baseline;gap:.6rem}
+  .project-name::before{content:counter(project-counter,decimal-leading-zero);font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.05em;flex-shrink:0;margin-top:.1rem}
+  .project-short{font-size:.86rem;color:var(--muted);line-height:1.65;margin-bottom:.35rem}
+  .project-detail{display:none;margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border)}
+  .project-detail.open{display:block}
+  .detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.1rem;margin-bottom:.85rem}
+  .detail-block label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.3rem}
+  .detail-block p{font-size:.84rem;color:var(--muted);line-height:1.7}
+  .tech-list{display:flex;flex-wrap:wrap;gap:.3rem}
+  .tech-chip{font-family:'DM Mono',monospace;font-size:.62rem;padding:.18rem .5rem;background:var(--bg);border:1px solid var(--dim);color:var(--muted);border-radius:2px}
+  .project-links{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:.75rem}
+  .project-link{font-family:'DM Mono',monospace;font-size:.68rem;padding:.32rem .85rem;border:1px solid;text-decoration:none;border-radius:2px;transition:all .2s;display:inline-flex;align-items:center;gap:.3rem;cursor:pointer;background:transparent}
+  .link-live{border-color:var(--accent2);color:var(--accent2)}.link-live:hover{background:rgba(79,195,247,.1)}
+  .link-github{border-color:var(--dim);color:var(--muted)}.link-github:hover{border-color:var(--text);color:var(--text)}
+  .link-add{border-color:var(--dim);color:var(--dim);border-style:dashed}.link-add:hover{border-color:var(--accent);color:var(--accent)}
+  .project-right{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;min-width:85px}
+  .status-dot{display:flex;align-items:center;gap:.4rem;font-family:'DM Mono',monospace;font-size:.62rem}
+  .dot{width:6px;height:6px;border-radius:50%}
+  .dot.live{background:var(--accent3);box-shadow:0 0 6px var(--accent3)}
+  .dot.wip{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+  .expand-btn{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--dim);background:none;border:1px solid var(--border);padding:.25rem .6rem;cursor:pointer;border-radius:2px;transition:all .2s;white-space:nowrap}
+  .expand-btn:hover,.expand-btn.open{color:var(--accent);border-color:var(--accent)}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:center;justify-content:center}
+  .modal-overlay.open{display:flex}
+  .modal{background:var(--bg2);border:1px solid var(--border);padding:2rem;width:480px;max-width:90vw;border-radius:3px}
+  .modal h3{font-family:'DM Serif Display',serif;font-size:1.2rem;margin-bottom:1.2rem;color:var(--text)}
+  .modal-field{margin-bottom:.8rem}
+  .modal-field label{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--dim);letter-spacing:.1em;display:block;margin-bottom:.3rem}
+  .modal-field input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:.52rem .75rem;font-family:'DM Mono',monospace;font-size:.78rem;outline:none;border-radius:2px}
+  .modal-field input:focus{border-color:var(--accent2)}
+  .modal-actions{display:flex;gap:.7rem;margin-top:1.2rem;justify-content:flex-end}
+  .btn-save{font-family:'DM Mono',monospace;font-size:.72rem;padding:.42rem 1.1rem;background:var(--accent);color:var(--bg);border:none;cursor:pointer;border-radius:2px;font-weight:500}
+  .btn-cancel{font-family:'DM Mono',monospace;font-size:.72rem;padding:.42rem 1.1rem;background:transparent;color:var(--muted);border:1px solid var(--border);cursor:pointer;border-radius:2px}
+  .footer{border-top:1px solid var(--border);padding:2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .footer-left{font-family:'DM Mono',monospace;font-size:.68rem;color:#ffffff}
+  .footer-right{display:flex;gap:1.5rem;flex-wrap:wrap}
+  .footer-link{font-family:'DM Mono',monospace;font-size:.68rem;color:#ffffff;text-decoration:none;transition:color .2s}
+  .footer-link:hover{color:var(--accent)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .hero{animation:fadeUp .5s ease both}
+  .project-card{animation:fadeUp .35s ease both}
+
+  /* ── MICROLINK PREVIEW CARD ── */
+  .preview-card{position:fixed;z-index:9999;width:320px;background:var(--bg2);border:1px solid rgba(240,192,64,.5);border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.8),0 0 0 1px rgba(240,192,64,.08);overflow:hidden;pointer-events:none;opacity:0;transform:translateY(10px) scale(.97);transition:opacity .18s ease,transform .18s ease}
+  .preview-card.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:none}
+  .preview-img-wrap{width:100%;height:185px;background:var(--bg3);overflow:hidden;position:relative}
+  .preview-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:opacity .3s}
+  .preview-img-wrap img.loading{opacity:0}
+  .preview-img-wrap img.loaded{opacity:1}
+  .preview-shimmer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.1em}
+  .preview-shimmer span{animation:blink 1.4s ease infinite}
+  @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+  .preview-footer{padding:.55rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;border-top:1px solid var(--border)}
+  .preview-url{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+  .preview-badge{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--dim);border:1px solid var(--border);padding:.18rem .5rem;border-radius:2px;white-space:nowrap;flex-shrink:0}
+  .project-name{cursor:default}
+  .has-preview .project-name{cursor:default;transition:color .15s}
+  .has-preview .project-name:hover{color:var(--accent)}
+  .preview-eye{font-size:.65rem;color:var(--accent);margin-left:.4rem;vertical-align:middle;font-family:'DM Mono',monospace;cursor:default;position:relative;display:inline-block}
+  .eye-tooltip{
+    position:absolute;
+    bottom:calc(100% + 8px);
+    left:50%;
+    transform:translateX(-50%);
+    background:#1a1e28;
+    border:1px solid var(--accent);
+    color:#ffffff;
+    font-family:'DM Mono',monospace;
+    font-size:.65rem;
+    font-weight:400;
+    padding:.4rem .8rem;
+    border-radius:3px;
+    white-space:nowrap;
+    pointer-events:none;
+    visibility:hidden;
+    opacity:0;
+    transition:opacity .15s ease, visibility .15s ease;
+    z-index:10000;
+    box-shadow:0 4px 16px rgba(0,0,0,.6);
+  }
+  .eye-tooltip::after{
+    content:'';
+    position:absolute;
+    top:100%;left:50%;
+    transform:translateX(-50%);
+    border:5px solid transparent;
+    border-top-color:var(--accent);
+  }
+  .preview-eye:hover .eye-tooltip,
+  .preview-eye.tip-show .eye-tooltip{
+    visibility:visible;
+    opacity:1;
+  }
+  @media(max-width:480px){.preview-card{display:none!important}}
+
+  @media print{body{background:white;color:black}body::before{display:none}.project-detail{display:block!important}.expand-btn,.filter-bar,.link-add,.modal-overlay,.preview-card{display:none!important}}
+
+  /* ── TABLET ── */
+  @media(max-width:768px){
+    .container{padding:0 1.25rem}
+    .hero{padding:2.5rem 0 2rem}
+    .hero h1{font-size:2.6rem}
+    .hero-meta{gap:1.25rem}
+    .stats-bar{grid-template-columns:repeat(3,1fr)}
+    .section-header{padding:2rem 0 1.25rem}
+    .detail-grid{grid-template-columns:1fr}
+    .modal{width:95vw;padding:1.5rem}
+  }
+
+  /* ── MOBILE ── */
+  @media(max-width:480px){
+    html{-webkit-text-size-adjust:100%}
+    .container{padding:0 1rem}
+
+    /* Hero */
+    .hero{padding:2rem 0 1.75rem}
+    .hero h1{font-size:2.2rem;line-height:1.1}
+    .hero-subtitle{font-size:.92rem}
+    .hero-bio{font-size:.92rem;line-height:1.75;padding-left:1rem}
+    .hero-meta{gap:1rem;grid-template-columns:1fr 1fr;display:grid}
+    .meta-value{font-size:.85rem}
+
+    /* Objective box */
+    .objective-box{padding:1rem 1rem 1rem 1rem}
+    .objective-text{font-size:.9rem;line-height:1.75}
+
+    /* Social links — stack on mobile */
+    .social-links{flex-direction:column;gap:.6rem}
+    .social-link{padding:.65rem 1rem;font-size:.75rem;text-align:center;justify-content:center;display:flex}
+
+    /* Skills */
+    .skills-strip{padding:1.25rem 0}
+    .skill-badge{font-size:.68rem;padding:.28rem .75rem}
+
+    /* Stats — 2 columns on mobile */
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .stat-num{font-size:1.7rem}
+    .stat-desc{font-size:.65rem}
+
+    /* Section headers */
+    .section-header{padding:1.75rem 0 1rem}
+    .section-title{font-size:1.25rem}
+
+    /* Filter bar — horizontal scroll */
+    .filter-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem;gap:.4rem;scrollbar-width:none}
+    .filter-bar::-webkit-scrollbar{display:none}
+    .filter-btn{white-space:nowrap;flex-shrink:0;font-size:.66rem;padding:.38rem .8rem}
+
+    /* Project cards — full single column */
+    .project-card{grid-template-columns:1fr;padding:1.25rem 1rem;gap:.6rem}
+    .project-right{flex-direction:row;align-items:center;justify-content:space-between;width:100%}
+    .project-name{font-size:1.05rem;gap:.4rem}
+    .project-short{font-size:.83rem}
+
+    /* Expand button — larger tap target */
+    .expand-btn{padding:.5rem .9rem;font-size:.65rem;min-height:36px}
+
+    /* Detail sections */
+    .detail-grid{grid-template-columns:1fr;gap:.9rem}
+    .detail-block p{font-size:.82rem}
+
+    /* Project links — stack on very small screens */
+    .project-links{gap:.45rem}
+    .project-link{padding:.45rem .8rem;font-size:.68rem;min-height:38px;display:inline-flex;align-items:center}
+
+    /* Modal — full screen on mobile */
+    .modal-overlay{align-items:flex-end}
+    .modal{width:100vw;max-width:100vw;border-radius:8px 8px 0 0;padding:1.5rem 1.25rem;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+    .modal h3{font-size:1.1rem}
+    .modal-field input{font-size:16px;padding:.65rem .75rem} /* 16px prevents iOS zoom */
+    .btn-save,.btn-cancel{min-height:44px;font-size:.78rem;padding:.6rem 1.1rem}
+
+    /* Footer — stack */
+    .footer{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.5rem 0;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+    .footer-left{font-size:.65rem;line-height:1.6}
+    .footer-right{gap:1rem;flex-wrap:wrap}
+    .footer-link{font-size:.7rem;min-height:36px;display:inline-flex;align-items:center}
+  }
+
+  /* ── VERY SMALL (iPhone SE) ── */
+  @media(max-width:375px){
+    .hero h1{font-size:1.9rem}
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .hero-meta{grid-template-columns:1fr}
+  }
+
+  /* ── iOS SAFE AREA (notch/home bar) ── */
+  @supports(padding:max(0px)){
+    .container{
+      padding-left:max(1rem, env(safe-area-inset-left));
+      padding-right:max(1rem, env(safe-area-inset-right));
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Developer Portfolio &middot; March 2026</div>
+  <h1>Avshi <em>Sapir</em></h1>
+  <p class="hero-subtitle">Self-Taught Junior Developer &middot; AI-Assisted Full Stack &middot; Kfar Shmaryahu, Israel</p>
+  <p class="hero-bio">Former flooring contractor turned developer at 72 &mdash; building a second career through curiosity, persistence, and AI-assisted development. In under a year I designed, built and deployed <strong>26 production repositories</strong> across two real clients: a TCM clinical assistant used by real therapists, and a construction CRM running a live business. I don't write code from memory &mdash; I architect solutions, manage data flows, and ship working products. Every project here is real, deployed, and in use.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><span class="meta-label">Availability</span><span class="meta-value">Freelance &middot; Part-time</span></div>
+    <div class="meta-item"><span class="meta-label">Stack</span><span class="meta-value">HTML &middot; JS &middot; Supabase &middot; GitHub Pages</span></div>
+    <div class="meta-item"><span class="meta-label">Languages</span><span class="meta-value">Hebrew &middot; English</span></div>
+    <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">Kfar Shmaryahu, Israel</span></div>
+  </div>
+  <div class="objective-box">
+    <div class="objective-label">&#128269; What I'm Looking For</div>
+    <p class="objective-text">I am a self-taught developer seeking <strong>freelance, part-time, home-based work</strong>. After 30 years as a flooring contractor, I built 26 production web systems in 6 months using AI-assisted development &mdash; real tools, real clients, real revenue. I bring deep construction and business domain knowledge, strong project management instincts, and the ability to ship working products fast. I am looking for a small team or solo client who values <strong>results over credentials</strong>.</p>
+  </div>
+  <div class="social-links">
+    <a href="https://www.facebook.com/profile.php?id=61583791313349" target="_blank" class="social-link sl-facebook">f Facebook Page (TCM &amp; Retreat Work)</a>
+    <a href="mailto:avshi2@gmail.com" class="social-link sl-email">&#9993; avshi2@gmail.com</a>
+    <a href="tel:+972505231042" class="social-link sl-phone">&#128222; 050-523-1042</a>
+    <a href="https://wa.me/972505231042?text=Hi%20Avshi%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20connect!" target="_blank" class="social-link sl-whatsapp">&#128172; WhatsApp Me</a>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="skills-strip">
+  <div class="skills-scroll">
+    <span class="skill-badge a">Supabase / PostgreSQL</span><span class="skill-badge a">GitHub Pages</span><span class="skill-badge a">Claude API</span><span class="skill-badge a">OpenAI API</span><span class="skill-badge b">HTML5 / CSS3</span><span class="skill-badge b">Vanilla JavaScript</span><span class="skill-badge b">REST APIs</span><span class="skill-badge b">Responsive / Mobile PWA</span><span class="skill-badge c">RTL Hebrew UI</span><span class="skill-badge c">Web Speech API</span><span class="skill-badge c">WhatsApp Integration</span><span class="skill-badge c">AI Prompt Engineering</span><span class="skill-badge a">Single-file Architecture</span><span class="skill-badge b">AES-256 Encryption</span><span class="skill-badge c">Netlify &middot; GitHub Pages</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="section-header"><span class="section-num">01</span><h2 class="section-title">By the Numbers</h2><div class="section-line"></div></div>
+<div class="stats-bar">
+  <div class="stat-cell"><span class="stat-num">26</span><span class="stat-desc">GitHub Repos</span></div>
+  <div class="stat-cell"><span class="stat-num">~1K</span><span class="stat-desc">Hours Invested</span></div>
+  <div class="stat-cell"><span class="stat-num">15+</span><span class="stat-desc">Live Deployments</span></div>
+  <div class="stat-cell"><span class="stat-num">2</span><span class="stat-desc">Real Clients</span></div>
+  <div class="stat-cell"><span class="stat-num">4</span><span class="stat-desc">Supabase DBs</span></div>
+  <div class="stat-cell"><span class="stat-num">6</span><span class="stat-desc">Months Learning</span></div>
+  <div class="stat-cell"><span class="stat-num">$7.5K</span><span class="stat-desc">Revenue Generated</span></div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-header"><span class="section-num">02</span><h2 class="section-title">All 26 Projects</h2><div class="section-line"></div></div>
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterProjects('all',this)">All (26)</button>
+  <button class="filter-btn" onclick="filterProjects('crm',this)">CRM / Field Tools</button>
+  <button class="filter-btn" onclick="filterProjects('tcm',this)">TCM / Medical</button>
+  <button class="filter-btn" onclick="filterProjects('site',this)">Websites</button>
+  <button class="filter-btn" onclick="filterProjects('pres',this)">Presentations</button>
+  <button class="filter-btn" onclick="filterProjects('ai',this)">AI-Powered</button>
+  <button class="filter-btn" onclick="filterProjects('legal',this)">Legal / Finance</button>
+</div>
+
+<div class="projects-grid" id="projectsGrid">
+
+<div class="project-card" data-tags="tcm ai crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-ai">AI-Powered</span><span class="project-tag tag-crm">SaaS</span></div>
+    <div class="project-name">MERIDIAN &mdash; TCM Clinical Assistant &amp; CRM</div>
+    <p class="project-short">Hebrew-language AI clinical assistant for acupuncture therapists. 1,000 clinical questions, RAG semantic search, Hebrew voice input, body diagrams, Yin-Yang assessment, and a 3-tier subscription model. Live production app targeting the Israeli TCM market at $8/month.</p>
+    <div class="project-detail" id="d1">
+      <div class="detail-grid">
+        <div class="detail-block"><label>Architecture</label><p>Single-file HTML (5,000+ lines) on GitHub Pages. Supabase PostgreSQL with 4,529-record unified RAG table. Claude API for multi-query semantic search. AES-256-GCM vault encryption for zero-knowledge auth.</p></div>
+        <div class="detail-block"><label>Key Features</label><p>411 quick + 589 clinical questions in Hebrew. Voice search (Web Speech API). Interactive body/acupoint diagrams. Yin-Yang assessment. 3-tier subscription gate. PDF / WhatsApp export. MRD vault codes.</p></div>
+        <div class="detail-block"><label>Business Model</label><p>$8/month SaaS. ~2,000 Israeli TCM practitioners as target market. Roadmap: CRM bridge &rarr; billing &rarr; global launch.</p></div>
+      </div>
+      <div class="detail-block" style="margin-bottom:.8rem"><label>Tech Stack</label><div class="tech-list"><span class="tech-chip">HTML5</span><span class="tech-chip">Vanilla JS</span><span class="tech-chip">Supabase</span><span class="tech-chip">Claude API</span><span class="tech-chip">Web Speech</span><span class="tech-chip">AES-256-GCM</span><span class="tech-chip">GitHub Pages</span><span class="tech-chip">RTL Hebrew</span></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/New-CM-Clinic-february-2026/" target="_blank" class="project-link link-live">&#8599; Live App</a><a href="https://github.com/avshi2-maker/New-CM-Clinic-february-2026" target="_blank" class="project-link link-github">&#9095; GitHub</a><button class="project-link link-add" onclick="openModal('1')">+ Add URL</button></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('1',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-crm">CRM</span><span class="project-tag tag-tool">Business Tool</span></div>
+    <div class="project-name">Stonhard CRM &mdash; Construction Project Manager</div>
+    <p class="project-short">Full CRM for a coating & flooring contractor. 16 Supabase tables managing projects, quotes, call log, reminders, Smart Notes (AI-assisted), Gantt charts, revenue forecast and purchase orders. Single HTML file used daily in a real business.</p>
+    <div class="project-detail" id="d2">
+      <div class="detail-grid">
+        <div class="detail-block"><label>Architecture</label><p>Strict single-file constraint (index.html). 16 Supabase tables. Zero external JS files. Tab-based SPA. Deployed on GitHub Pages.</p></div>
+        <div class="detail-block"><label>Key Features</label><p>Project pipeline with status tracking. Quote management. Smart Notes (AI). Google Calendar embed. Gantt chart with drag-resize. Revenue & profit forecast. WhatsApp quick-share from any record.</p></div>
+        <div class="detail-block"><label>Real Usage</label><p>Live production tool used daily by a real Israeli coating business &mdash; actual business data, actual invoices, actual projects.</p></div>
+      </div>
+      <div class="detail-block" style="margin-bottom:.8rem"><label>Tech Stack</label><div class="tech-list"><span class="tech-chip">HTML5</span><span class="tech-chip">Vanilla JS</span><span class="tech-chip">Supabase</span><span class="tech-chip">16 DB Tables</span><span class="tech-chip">Gantt Logic</span><span class="tech-chip">WhatsApp API</span><span class="tech-chip">GitHub Pages</span></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/work-journal/" target="_blank" class="project-link link-live">&#8599; Live App</a><a href="https://github.com/avshi2-maker/work-journal" target="_blank" class="project-link link-github">&#9095; GitHub</a><button class="project-link link-add" onclick="openModal('2')">+ Add URL</button></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('2',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm ai mobile">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-mobile">Mobile PWA</span><span class="project-tag tag-ai">AI Brain</span><span class="project-tag tag-crm">Field CRM</span></div>
+    <div class="project-name">Site Pulse &mdash; Beni Daily Field Journal</div>
+    <p class="project-short">Mobile-first PWA for a construction site engineer. Voice recording on-site &rarr; Claude AI analyzes in Hebrew &rarr; structured JSON (category, priority, action items, project hint) &rarr; CRM sync at end of day. Built for Android Chrome.</p>
+    <div class="project-detail" id="d3">
+      <div class="detail-grid">
+        <div class="detail-block"><label>Architecture</label><p>Single-file PWA. Web Speech API voice capture. Claude API returns structured Hebrew JSON. Supabase persistence. End-of-day batch sync to Stonhard CRM reports table.</p></div>
+        <div class="detail-block"><label>AI Layer</label><p>After each voice memo, Claude returns: summary, category (task/site-issue/materials/client/finance), priority, action items array, tags, and project hint &mdash; displayed as a live AI card.</p></div>
+        <div class="detail-block"><label>Key Features</label><p>Voice &rarr; AI card &rarr; Save to EOD. End-of-Day tab with stats, send-to-CRM, convert-to-tasks, WhatsApp day summary. Reminders, call log, quick replies.</p></div>
+      </div>
+      <div class="detail-block" style="margin-bottom:.8rem"><label>Tech Stack</label><div class="tech-list"><span class="tech-chip">PWA</span><span class="tech-chip">Web Speech API</span><span class="tech-chip">Claude API</span><span class="tech-chip">Supabase</span><span class="tech-chip">Hebrew NLP</span><span class="tech-chip">Android Chrome</span></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/site-pulse-Beni-Daily_JUrnal/" target="_blank" class="project-link link-live">&#8599; Live App</a><a href="https://github.com/avshi2-maker/site-pulse-Beni-Daily_JUrnal" target="_blank" class="project-link link-github">&#9095; GitHub</a><button class="project-link link-add" onclick="openModal('3')">+ Add URL</button></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('3',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="legal">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-legal">Legal</span><span class="project-tag tag-tool">Evidence Portal</span></div>
+    <div class="project-name">Legal Evidence Portal &mdash; Business Dispute Documentation</div>
+    <p class="project-short">10-tab HTML evidence portal for a real business dispute. 45 WhatsApp evidence pages, invoices, daily auto-updating interest calculator (13.5% annual), What-If ROI analysis, timeline, and a dialogue tab &mdash; all from one shareable URL.</p>
+    <div class="project-detail" id="d4">
+      <div class="detail-grid">
+        <div class="detail-block"><label>Architecture</label><p>Single-page HTML app on GitHub Pages. Live interest calculator auto-updates daily. Supabase Storage for PDF/Excel files. Filterable WhatsApp evidence by category and importance.</p></div>
+        <div class="detail-block"><label>Why Impressive</label><p>Professional-grade tool for a real high-stakes legal scenario. Shows data presentation, financial logic, and UX thinking under real pressure &mdash; not a tutorial project.</p></div>
+      </div>
+      <div class="detail-block" style="margin-bottom:.8rem"><label>Tech Stack</label><div class="tech-list"><span class="tech-chip">HTML5</span><span class="tech-chip">Vanilla JS</span><span class="tech-chip">Supabase Storage</span><span class="tech-chip">Auto Date Logic</span><span class="tech-chip">RTL Hebrew</span></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/avshi-vs-roni/" target="_blank" class="project-link link-live">&#8599; Live Portal</a><a href="https://github.com/avshi2-maker/avshi-vs-roni" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('4',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Website</span><span class="project-tag tag-tcm">Retreat</span></div>
+    <div class="project-name">Sri Lanka Retreat &mdash; Hebrew Marketing Site</div>
+    <p class="project-short">Full Hebrew-language marketing website for the Welikande TCM wellness retreat. Mobile-first RTL design with booking flow and WhatsApp integration. Directly contributed to recruiting 6 paying guests &times; $1,250 = $7,500 revenue.</p>
+    <div class="project-detail" id="d5">
+      <div class="detail-grid">
+        <div class="detail-block"><label>Commercial Result</label><p>This site generated real revenue for a real client. A proven commercial outcome &mdash; not a demo. The strongest proof that my work creates business value.</p></div>
+        <div class="detail-block"><label>Features</label><p>Full Hebrew RTL. Pricing, schedule, instructor bios, photo gallery, WhatsApp booking CTA. Mobile-first responsive.</p></div>
+      </div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/SeriLanka_Hebrew_webSite/" target="_blank" class="project-link link-live">&#8599; Live Site</a><a href="https://github.com/avshi2-maker/SeriLanka_Hebrew_webSite" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('5',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Website</span><span class="project-tag tag-tcm">Retreat</span></div>
+    <div class="project-name">Sri Lanka Retreat &mdash; English Marketing Site</div>
+    <p class="project-short">English-language retreat marketing site for international audiences. Multi-step registration, activity descriptions, pricing, schedule. Deployed to Netlify for fast global CDN delivery.</p>
+    <div class="project-detail" id="d6">
+      <div class="detail-grid"><div class="detail-block"><label>Features</label><p>Multi-step booking. Activity gallery. Instructor bios. Price tiers. Schedule. WhatsApp integration. Netlify CDN hosting.</p></div></div>
+      <div class="project-links"><a href="https://preeminent-liger-70a2fa.netlify.app/" target="_blank" class="project-link link-live">&#8599; Live (Netlify)</a><a href="https://github.com/avshi2-maker/Seri_lanka_Retreat_web" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('6',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Landing Page</span><span class="project-tag tag-tcm">Retreat</span></div>
+    <div class="project-name">Retreat Information Landing Page</div>
+    <p class="project-short">Standalone info page with full retreat details &mdash; schedule, activities, pricing, FAQ and registration link. Optimized for WhatsApp sharing with Open Graph meta tags for rich preview on mobile.</p>
+    <div class="project-detail" id="d7">
+      <div class="detail-grid"><div class="detail-block"><label>Purpose</label><p>Optimized for WhatsApp link sharing with rich preview. All retreat details in a single scannable page targeted at mobile users.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Retreat_information_landpage/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Retreat_information_landpage" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('7',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Mini Landing</span><span class="project-tag tag-tcm">Retreat</span></div>
+    <div class="project-name">Mini WhatsApp Landing Page &mdash; Sri Lanka Retreat</div>
+    <p class="project-short">Ultra-compact single-screen landing page built for WhatsApp sharing. Key retreat highlights, price, and one CTA button. Demonstrates focused mobile UX thinking &mdash; designed for fast-scrolling mobile users.</p>
+    <div class="project-detail" id="d8">
+      <div class="detail-grid"><div class="detail-block"><label>Design Thinking</label><p>WhatsApp users scroll fast on mobile. Single screen, bold headline, one CTA. Focused UX constraint leads to better conversion.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/landing_page-small_Srilanka/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/landing_page-small_Srilanka" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('8',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Bio Card</span><span class="project-tag tag-tcm">TCM</span></div>
+    <div class="project-name">Dr. Roni Sapir &mdash; Clinic Bio &amp; Digital Business Card</div>
+    <p class="project-short">Professional digital business card and landing page for an acupuncture clinic. PhD credentials, specialties, contact info. Designed for social media and WhatsApp sharing &mdash; replaces a paper business card with a rich mobile page.</p>
+    <div class="project-detail" id="d9">
+      <div class="detail-grid"><div class="detail-block"><label>Purpose</label><p>Rich digital alternative to a paper business card. Photo, PhD credentials, specialties, contact links, clinic address &mdash; all on one mobile-optimized page.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/BIO_DrRoni_Clinic_Details/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/BIO_DrRoni_Clinic_Details" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('9',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Event Page</span><span class="project-tag tag-tcm">TCM</span></div>
+    <div class="project-name">Jaffa Private Lecture &mdash; Event Landing Page</div>
+    <p class="project-short">Event landing page for a private TCM lecture in Jaffa. Event details, location map, RSVP / registration, speaker bio. Distributed via WhatsApp to targeted invitees for a real live event.</p>
+    <div class="project-detail" id="d10">
+      <div class="detail-grid"><div class="detail-block"><label>Context</label><p>One-off private event page built and deployed fast for a real lecture. Demonstrates ability to deliver focused, real-world pages quickly.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/landing_Jaffa_roni_private/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/landing_Jaffa_roni_private" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('10',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="site tcm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-site">Product Page</span><span class="project-tag tag-tcm">Health</span></div>
+    <div class="project-name">Oxygen Module &mdash; Health Product Landing Page</div>
+    <p class="project-short">Marketing page for an oxygen capsule health product. Product description, health benefits, pricing, and order CTA. Real product actively sold by the client and his business partner.</p>
+    <div class="project-detail" id="d11">
+      <div class="detail-grid"><div class="detail-block"><label>Context</label><p>E-commerce style product page for a real product. Shows sales-oriented UX and copy skills. The product is actively sold.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/oxygen-module/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/oxygen-module" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('11',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm legal">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-legal">ROI / Finance</span></div>
+    <div class="project-name">Avshi Sapir Reports &mdash; Clinic Cost &amp; ROI Analysis</div>
+    <p class="project-short">Detailed financial documentation of all bot costs and projected ROI for the TCM clinic development. Includes cost-benefit breakdown, subscriber projections, 5-year revenue model. Presented to the client alongside invoices.</p>
+    <div class="project-detail" id="d12">
+      <div class="detail-grid"><div class="detail-block"><label>Value</label><p>Demonstrates business analysis skills beyond development &mdash; understanding ROI, cost structure, and pricing strategy. A developer who thinks about business outcomes.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/AvshiSapirReports_Clinic/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/AvshiSapirReports_Clinic" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('12',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm legal">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-legal">Pricing Tool</span></div>
+    <div class="project-name">Clinic ROI Simulator &mdash; Monthly Subscription Pricing</div>
+    <p class="project-short">Interactive ROI simulator for the MERIDIAN clinic subscription. Therapists enter their own patient numbers &rarr; see personalized time saved, revenue increase, and payback period. A self-selling pricing page.</p>
+    <div class="project-detail" id="d13">
+      <div class="detail-grid"><div class="detail-block"><label>Product Thinking</label><p>A tool that sells itself. Personalized ROI is far more persuasive than a static price table. Demonstrates product design intelligence.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/ROI_Clinic_2026/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/ROI_Clinic_2026" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('13',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm legal">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-legal">Finance</span></div>
+    <div class="project-name">Therapist Private ROI Simulator</div>
+    <p class="project-short">Private income/expense ROI calculator for individual therapists evaluating the MERIDIAN subscription. Shows monthly cost, expected revenue uplift, and net gain. Personalized to Israeli therapy market rates.</p>
+    <div class="project-detail" id="d14">
+      <div class="detail-grid"><div class="detail-block"><label>Use Case</label><p>Used during sales conversations with potential subscribers. A conversion tool &mdash; not an informational page.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Therapist_private_ROI_Simulator/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Therapist_private_ROI_Simulator" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('14',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm site">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-site">Pricing UX</span></div>
+    <div class="project-name">Pizza Builder &mdash; Therapist Subscription Tier Selector</div>
+    <p class="project-short">Interactive "pizza builder" style subscription tier selector for MERIDIAN therapists. Lets therapists choose their feature bundle visually. Demonstrates UX creativity &mdash; gamified pricing converts better than static comparison tables.</p>
+    <div class="project-detail" id="d15">
+      <div class="detail-grid"><div class="detail-block"><label>Design Insight</label><p>Gamified pricing selectors outperform comparison tables. This goes beyond conventional patterns to create a more engaging and memorable buying experience.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Pizza_builder-for-therapist-Tier/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Pizza_builder-for-therapist-Tier" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('15',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm site">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-site">Teaser</span></div>
+    <div class="project-name">MERIDIAN Teaser &mdash; Therapist Info &amp; Tier Page</div>
+    <p class="project-short">Marketing teaser page introducing MERIDIAN to acupuncture therapists. Pricing tiers, Hebrew tooltip for transcription, WhatsApp contact. Top-of-funnel lead generation &mdash; shared in therapist WhatsApp groups and professional networks.</p>
+    <div class="project-detail" id="d16">
+      <div class="detail-grid"><div class="detail-block"><label>Purpose</label><p>Top-of-funnel lead generation. Designed for sharing in therapist WhatsApp groups. Drives sign-ups to the free trial tier.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/teaser_terapist-_pick_a_tier/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/teaser_terapist-_pick_a_tier" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('16',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-crm">Field Tool</span><span class="project-tag tag-tool">Sign-off</span></div>
+    <div class="project-name">Daily Diary &mdash; Foreman / Supervisor Work Log</div>
+    <p class="project-short">Digital daily work diary for construction site foremen. Records daily scope, workers, weather, issues, and generates a signed daily confirmation document for invoicing. Replaces paper-based sign-off logs with a digital audit trail.</p>
+    <div class="project-detail" id="d17">
+      <div class="detail-grid"><div class="detail-block"><label>Industry Value</label><p>Paper daily logs are lost, illegible, and disputed. Digital signed logs create a legal audit trail for payment disputes &mdash; a real problem solved.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/daily_diary_forman-supervisor/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/daily_diary_forman-supervisor" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('17',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-crm">Progress Log</span><span class="project-tag tag-tool">Field Tool</span></div>
+    <div class="project-name">Microtopping Daily Progress &mdash; Hasmonaim Project</div>
+    <p class="project-short">Day-by-day progress tracker for a Denglass panel microtopping coating project on Hasmonaim Street. Tracks layers completed, workers, materials and costs per day. Used live on-site during active construction.</p>
+    <div class="project-detail" id="d18">
+      <div class="detail-grid"><div class="detail-block"><label>Domain Knowledge</label><p>Requires deep understanding of the 7-layer microtopping process. Combines 30 years of flooring expertise with web skills &mdash; a unique and credible niche.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/microtoping_daily_progres_report_Hasmonaim_Project/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/microtoping_daily_progres_report_Hasmonaim_Project" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('18',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm legal">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-crm">Quote Tool</span><span class="project-tag tag-legal">B2B Proposal</span></div>
+    <div class="project-name">Stonhard Anti-Static &mdash; Technical &amp; Financial Quote</div>
+    <p class="project-short">Full technical and financial proposal for an anti-static epoxy flooring supplement for the Tamar project. Includes technical specs, cost breakdown, and approval workflow. A live URL replaces a static PDF quote.</p>
+    <div class="project-detail" id="d19">
+      <div class="detail-grid"><div class="detail-block"><label>Modern B2B</label><p>HTML proposals are updatable in real time, shareable via WhatsApp, and perfect on mobile &mdash; better than any PDF. A modern approach to construction quoting.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Stonhard_AntiStatic_data_Price-offer_Tamar/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Stonhard_AntiStatic_data_Price-offer_Tamar" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('19',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm legal">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-crm">Budget Tool</span><span class="project-tag tag-legal">3 Alternatives</span></div>
+    <div class="project-name">Tamar Epoxy Flooring &mdash; 3-Option Budget Proposal</div>
+    <p class="project-short">Three-alternative budget analysis for epoxy flooring at the Tamar factory in Caesarea. Each option includes scope, materials, timeline and total cost. Presented to the operations manager for approval decision.</p>
+    <div class="project-detail" id="d20">
+      <div class="detail-grid"><div class="detail-block"><label>Value</label><p>Live web proposals are better than PDFs &mdash; updatable, shareable via URL, mobile-ready. Demonstrates modern B2B sales tool design thinking in construction.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Tamar_Stonhard_Epoxy_Flooring_progect/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Tamar_Stonhard_Epoxy_Flooring_progect" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('20',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm tool">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tool">Safety</span><span class="project-tag tag-crm">Compliance</span></div>
+    <div class="project-name">Safety Training Protocols &mdash; Construction Site</div>
+    <p class="project-short">Digital safety training and protocol documentation system for construction sites. Worker sign-off forms, protocol details, printable certificates. Replaces paper compliance folders with a mobile-signable digital system.</p>
+    <div class="project-detail" id="d21">
+      <div class="detail-grid"><div class="detail-block"><label>Legal Relevance</label><p>Safety documentation is a legal requirement on Israeli construction sites. Digital signed records are faster, more reliable, and create a proper audit trail.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/safety-Training-protocols/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/safety-Training-protocols" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('21',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="pres crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-pres">Presentation</span><span class="project-tag tag-crm">Construction</span></div>
+    <div class="project-name">Denglass Microtopping &mdash; Technical Presentation</div>
+    <p class="project-short">Professional technical presentation about Denglass panel and microtopping coating for facade applications. System overview, layers, materials, application process. Used as a client education and sales tool.</p>
+    <div class="project-detail" id="d22">
+      <div class="detail-grid"><div class="detail-block"><label>Domain Expertise</label><p>Content quality is industry-grade because it comes from 30 years of direct contractor experience. Not generic text &mdash; real expertise in web form.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/DEnsglass_microtopping_Presentation/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/DEnsglass_microtopping_Presentation" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('22',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="pres crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-pres">Proposal</span><span class="project-tag tag-crm">Construction</span></div>
+    <div class="project-name">Givon Facade Correction &mdash; Project Proposal</div>
+    <p class="project-short">Project proposal for Denglass facade panel installation and microtopping coating for balconies. Scope, material specs, visual mockups, pricing. Updatable live URL replaces a static Word/PDF proposal.</p>
+    <div class="project-detail" id="d23">
+      <div class="detail-grid"><div class="detail-block"><label>Format Innovation</label><p>Live web proposals can be updated in real time, shared via WhatsApp, and viewed on any device &mdash; a better client experience than email attachments.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Givon-Facade-Correction/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Givon-Facade-Correction" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('23',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="crm">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-crm">Site Log</span><span class="project-tag tag-tool">Microtopping</span></div>
+    <div class="project-name">Topcret Microtopping &mdash; Hasmonaim Site Log</div>
+    <p class="project-short">Detailed site log for Topcret microtopping on Denglass panels at Hasmonaim Street with contractor Beni Persky. Day-by-day layer tracking, worker records, and material consumption. Used live on site during active construction.</p>
+    <div class="project-detail" id="d24">
+      <div class="detail-grid"><div class="detail-block"><label>Real-World Use</label><p>Combines developer skills with 30-year contractor domain expertise. Tools built from direct experience are superior to generic solutions &mdash; this is a genuine competitive advantage.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/Topcret_microtoping/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/Topcret_microtoping" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('24',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm ai">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">TCM</span><span class="project-tag tag-ai">AI-Powered</span></div>
+    <div class="project-name">TCM Clinical Assistant 2026 &mdash; Early Version</div>
+    <p class="project-short">Earlier iteration of the TCM clinical assistant. Core question database, AI search integration, Hebrew interface. Predecessor to the full MERIDIAN system &mdash; comparing these two shows 6 months of rapid product growth.</p>
+    <div class="project-detail" id="d25">
+      <div class="detail-grid"><div class="detail-block"><label>Evolution Story</label><p>Comparing this to MERIDIAN demonstrates rapid learning and product maturity. Every senior developer has early iterations &mdash; showing both proves real growth over time.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/tcm-clinical-assistant-2026/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/tcm-clinical-assistant-2026" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot wip"></div><span style="color:var(--accent)">Archive</span></div><button class="expand-btn" onclick="toggleDetail('25',this)">expand &#8595;</button></div>
+</div>
+
+<div class="project-card" data-tags="tcm site">
+  <div class="project-left">
+    <div class="project-tags"><span class="project-tag tag-tcm">Retreat</span><span class="project-tag tag-site">Original Site</span></div>
+    <div class="project-name">Sri Lanka Retreat &mdash; Original January 2026 Site</div>
+    <p class="project-short">The original retreat website for the January 2026 10-day trip &mdash; the site that ran the real event and generated the $7,500 in revenue. Preserved as the original proof of commercial success. Not a demo &mdash; paying customers used this URL.</p>
+    <div class="project-detail" id="d26">
+      <div class="detail-grid"><div class="detail-block"><label>Significance</label><p>This URL was shared with real paying customers. It is the direct proof that my work generates real commercial value &mdash; the strongest item in the portfolio.</p></div></div>
+      <div class="project-links"><a href="https://avshi2-maker.github.io/sri-lanka-retreat/" target="_blank" class="project-link link-live">&#8599; Live</a><a href="https://github.com/avshi2-maker/sri-lanka-retreat" target="_blank" class="project-link link-github">&#9095; GitHub</a></div>
+    </div>
+  </div>
+  <div class="project-right"><div class="status-dot"><div class="dot live"></div><span style="color:var(--accent3)">Live</span></div><button class="expand-btn" onclick="toggleDetail('26',this)">expand &#8595;</button></div>
+</div>
+
+</div><!-- /projects-grid -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">&copy; 2026 Avshi Sapir &middot; Kfar Shmaryahu, Israel &middot; 26 repositories &middot; 6 months</div>
+  <div class="footer-right">
+    <a href="https://www.facebook.com/profile.php?id=61583791313349" target="_blank" class="footer-link">Facebook &rarr;</a>
+    <a href="mailto:avshi2@gmail.com" class="footer-link">&#9993; avshi2@gmail.com</a>
+    <a href="tel:+972505231042" class="footer-link">&#128222; 050-523-1042</a>
+    <a href="https://wa.me/972505231042?text=Hi%20Avshi%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20connect!" target="_blank" class="footer-link footer-whatsapp">&#128172; WhatsApp</a>
+    <a href="#" onclick="window.print();return false;" class="footer-link">Print PDF &rarr;</a>
+  </div>
+</footer>
+
+</div><!-- /container -->
+
+<!-- MODAL -->
+<!-- MICROLINK PREVIEW CARD -->
+<div class="preview-card" id="previewCard">
+  <div class="preview-img-wrap">
+    <img id="previewImg" src="" alt="Site preview" class="loading">
+    <div class="preview-shimmer" id="previewShimmer"><span>loading preview...</span></div>
+  </div>
+  <div class="preview-footer">
+    <span class="preview-url" id="previewUrl"></span>
+    <span class="preview-badge">screenshot only</span>
+  </div>
+</div>
+
+<!-- URL MODAL -->
+<div class="modal-overlay" id="urlModal">
+  <div class="modal">
+    <h3>Add / Edit URLs</h3>
+    <div class="modal-field"><label>Live URL</label><input type="url" id="modal-live" placeholder="https://..."></div>
+    <div class="modal-field"><label>GitHub Repository URL</label><input type="url" id="modal-github" placeholder="https://github.com/..."></div>
+    <div class="modal-field"><label>Extra Label (optional)</label><input type="text" id="modal-label" placeholder="e.g. Demo Video"></div>
+    <div class="modal-field"><label>Extra URL (optional)</label><input type="url" id="modal-extra" placeholder="https://..."></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveUrls()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function filterProjects(tag,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card=>{
+    card.classList.toggle('hidden',tag!=='all'&&!(card.dataset.tags||'').includes(tag));
+  });
+}
+function toggleDetail(id,btn){
+  const d=document.getElementById('d'+id);
+  const open=d.classList.toggle('open');
+  btn.textContent=open?'collapse \u2191':'expand \u2193';
+  btn.classList.toggle('open',open);
+}
+let currentId=null;
+const urlStore={};
+function openModal(id){
+  currentId=id;
+  const s=urlStore[id]||{};
+  document.getElementById('modal-live').value=s.live||'';
+  document.getElementById('modal-github').value=s.github||'';
+  document.getElementById('modal-label').value=s.label||'';
+  document.getElementById('modal-extra').value=s.extra||'';
+  document.getElementById('urlModal').classList.add('open');
+}
+function closeModal(){document.getElementById('urlModal').classList.remove('open');}
+function saveUrls(){
+  const id=currentId,
+    live=document.getElementById('modal-live').value.trim(),
+    github=document.getElementById('modal-github').value.trim(),
+    label=document.getElementById('modal-label').value.trim(),
+    extra=document.getElementById('modal-extra').value.trim();
+  urlStore[id]={live,github,label,extra};
+  const links=document.querySelector('#d'+id+' .project-links');
+  links.querySelectorAll('.saved-link').forEach(l=>l.remove());
+  const add=links.querySelector('.link-add');
+  const mk=(href,cls,txt)=>{const a=document.createElement('a');a.href=href;a.target='_blank';a.className='project-link '+cls+' saved-link';a.textContent=txt;links.insertBefore(a,add);};
+  if(live) mk(live,'link-live','\u2197 Live');
+  if(github) mk(github,'link-github','\u2325 GitHub');
+  if(extra&&label) mk(extra,'link-live','\u2197 '+label);
+  const det=document.getElementById('d'+id);
+  if(!det.classList.contains('open')){
+    const b=document.querySelector('.expand-btn[onclick*="\''+id+'\'"]');
+    if(b)toggleDetail(id,b);
+  }
+  closeModal();
+}
+document.getElementById('urlModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// ── MICROLINK PREVIEW ENGINE ──
+const PREVIEW_URLS = {
+  1:  'https://avshi2-maker.github.io/New-CM-Clinic-february-2026/',
+  2:  'https://avshi2-maker.github.io/work-journal/',
+  3:  'https://avshi2-maker.github.io/site-pulse-Beni-Daily_JUrnal/',
+  4:  'https://avshi2-maker.github.io/avshi-vs-roni/',
+  5:  'https://avshi2-maker.github.io/SeriLanka_Hebrew_webSite/',
+  6:  'https://preeminent-liger-70a2fa.netlify.app/',
+  7:  'https://avshi2-maker.github.io/Retreat_information_landpage/',
+  8:  'https://avshi2-maker.github.io/landing_page-small_Srilanka/',
+  9:  'https://avshi2-maker.github.io/BIO_DrRoni_Clinic_Details/',
+  10: 'https://avshi2-maker.github.io/landing_Jaffa_roni_private/',
+  11: 'https://avshi2-maker.github.io/oxygen-module/',
+  12: 'https://avshi2-maker.github.io/AvshiSapirReports_Clinic/',
+  13: 'https://avshi2-maker.github.io/ROI_Clinic_2026/',
+  14: 'https://avshi2-maker.github.io/Therapist_private_ROI_Simulator/',
+  15: 'https://avshi2-maker.github.io/Pizza_builder-for-therapist-Tier/',
+  16: 'https://avshi2-maker.github.io/teaser_terapist-_pick_a_tier/',
+  17: 'https://avshi2-maker.github.io/daily_diary_forman-supervisor/',
+  18: 'https://avshi2-maker.github.io/microtoping_daily_progres_report_Hasmonaim_Project/',
+  19: 'https://avshi2-maker.github.io/Stonhard_AntiStatic_data_Price-offer_Tamar/',
+  20: 'https://avshi2-maker.github.io/Tamar_Stonhard_Epoxy_Flooring_progect/',
+  21: 'https://avshi2-maker.github.io/safety-Training-protocols/',
+  22: 'https://avshi2-maker.github.io/DEnsglass_microtopping_Presentation/',
+  23: 'https://avshi2-maker.github.io/Givon-Facade-Correction/',
+  24: 'https://avshi2-maker.github.io/Topcret_microtoping/',
+  25: 'https://avshi2-maker.github.io/tcm-clinical-assistant-2026/',
+  26: 'https://avshi2-maker.github.io/sri-lanka-retreat/'
+};
+
+const previewCard  = document.getElementById('previewCard');
+const previewImg   = document.getElementById('previewImg');
+const previewShimmer = document.getElementById('previewShimmer');
+const previewUrlEl = document.getElementById('previewUrl');
+const screenshotCache = {};
+let hideTimer = null;
+let activePid = null;
+const isMobile = window.matchMedia('(max-width:768px)').matches;
+
+function mlUrl(u){ return 'https://api.microlink.io/?url='+encodeURIComponent(u)+'&screenshot=true&meta=false'; }
+
+function positionCard(el){
+  const r=el.getBoundingClientRect(), cw=320, ch=250, mg=12, vw=window.innerWidth, vh=window.innerHeight;
+  let left=r.left, top=r.bottom+mg;
+  if(left+cw>vw-mg) left=vw-cw-mg;
+  if(left<mg) left=mg;
+  if(top+ch>vh-mg) top=r.top-ch-mg;
+  previewCard.style.left=left+'px';
+  previewCard.style.top=top+'px';
+  previewCard.style.width=Math.min(cw,vw-mg*2)+'px';
+}
+
+function loadImg(src){
+  previewImg.onload=()=>{
+    previewShimmer.style.display='none';
+    previewImg.classList.remove('loading');
+    previewImg.classList.add('loaded');
+    // Update tooltip to instant for this project
+    document.querySelectorAll('.preview-eye .eye-tooltip').forEach((t,i)=>{
+      if(screenshotCache[i+1]) t.textContent='⚡ instant preview';
+    });
+  };
+  previewImg.onerror=()=>{ previewShimmer.innerHTML='<span style="color:var(--dim)">preview unavailable</span>'; };
+  previewImg.src=src;
+}
+
+function showPreview(id, triggerEl){
+  if(isMobile) return;
+  clearTimeout(hideTimer);
+  if(activePid===id && previewCard.classList.contains('visible')) return;
+  activePid=id;
+  const url=PREVIEW_URLS[id]; if(!url) return;
+  positionCard(triggerEl);
+  previewShimmer.style.display='flex';
+  previewShimmer.innerHTML='<span>capturing screenshot...</span>';
+  previewImg.classList.add('loading'); previewImg.classList.remove('loaded'); previewImg.src='';
+  previewUrlEl.textContent=url.replace('https://','');
+  previewCard.classList.add('visible');
+  if(screenshotCache[id]){ loadImg(screenshotCache[id]); return; }
+  // Microlink free tier can take 5-10s — show progress messages
+  const msgs=['capturing screenshot...','rendering page...','almost ready...'];
+  let mi=0;
+  const msgTimer=setInterval(()=>{ mi=(mi+1)%msgs.length; if(previewShimmer.style.display!=='none') previewShimmer.innerHTML='<span>'+msgs[mi]+'</span>'; },3000);
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>{ controller.abort(); clearInterval(msgTimer); previewShimmer.innerHTML='<span style="color:var(--dim)">timeout — try again</span>'; },20000);
+  fetch(mlUrl(url),{signal:controller.signal})
+    .then(r=>r.json())
+    .then(d=>{
+      clearInterval(msgTimer); clearTimeout(timeout);
+      console.log('Microlink response:', d);
+      const s = d?.data?.screenshot?.url;
+      if(s){ screenshotCache[id]=s; if(activePid===id) loadImg(s); }
+      else { previewShimmer.innerHTML='<span style="color:var(--dim)">preview unavailable</span>'; }
+    })
+    .catch(err=>{ clearInterval(msgTimer); clearTimeout(timeout); if(err.name!=='AbortError') previewShimmer.innerHTML='<span style="color:var(--dim)">preview unavailable</span>'; });
+}
+
+function hidePreview(){ hideTimer=setTimeout(()=>{ previewCard.classList.remove('visible'); activePid=null; },220); }
+
+// No mouse interaction on card — screenshot only, no clicking through
+document.querySelectorAll('.project-card').forEach((cardEl,idx)=>{
+  const id=idx+1;
+  if(!PREVIEW_URLS[id]) return;
+  cardEl.classList.add('has-preview');
+  const nameEl=cardEl.querySelector('.project-name');
+  if(!nameEl) return;
+  const hint=document.createElement('span');
+  hint.className='preview-eye';
+  hint.textContent=' 👁';
+  const tip=document.createElement('span');
+  tip.className='eye-tooltip';
+  tip.textContent='⏳ hover — allow ~10 sec for first screenshot';
+  hint.appendChild(tip);
+  nameEl.appendChild(hint);
+  nameEl.addEventListener('mouseenter',()=>{
+    tip.textContent=screenshotCache[id]?'⚡ instant preview':'⏳ hover — allow ~10 sec for first screenshot';
+    showPreview(id,nameEl);
+  });
+  nameEl.addEventListener('mouseleave',hidePreview);
+});
+
+window.addEventListener('scroll',()=>{
+  if(previewCard.classList.contains('visible')&&activePid){
+    const all=document.querySelectorAll('.has-preview .project-name');
+    if(all[activePid-1]) positionCard(all[activePid-1]);
+  }
+},{passive:true});
+</script>
+</body>
+</html>
