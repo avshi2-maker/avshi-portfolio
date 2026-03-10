@@ -13,7 +13,6 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.6;direction:rtl}
 a{color:inherit;text-decoration:none}
 #loader{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s}
-#loader.fade{opacity:0;pointer-events:none}
 .loader-ring{width:44px;height:44px;border:3px solid rgba(240,192,64,.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
 .loader-text{margin-top:1rem;font-size:.75rem;letter-spacing:.15em;color:var(--gold);font-family:var(--mono)}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -31,6 +30,11 @@ a{color:inherit;text-decoration:none}
 .lb-dots{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
 .lb-dot{width:8px;height:8px;border-radius:50%;background:rgba(240,192,64,.25);cursor:pointer;transition:background .2s}
 .lb-dot.active{background:var(--gold)}
+/* BACK TO BIO BAR */
+.back-bar{background:rgba(240,192,64,.06);border-bottom:1px solid rgba(240,192,64,.15);padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.72rem;color:var(--gold);padding:.3rem .8rem;border:1px solid rgba(240,192,64,.35);border-radius:20px;transition:all .2s;text-decoration:none;}
+.back-btn:hover{background:rgba(240,192,64,.1);border-color:var(--gold);}
+.back-bar-date{font-family:var(--mono);font-size:.65rem;color:var(--dim);}
 .hero{max-width:860px;margin:0 auto;padding:3rem 1.5rem 2rem;text-align:center}
 .hero-eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--gold);margin-bottom:1rem;text-transform:uppercase}
 .hero-name{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.1;margin-bottom:.5rem}
@@ -113,8 +117,15 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
   <div class="lb-nav"><button class="lb-nav-btn" id="lbPrev">&#8592; קודם</button><span class="lb-counter" id="lbCounter"></span><button class="lb-nav-btn" id="lbNext">הבא &#8594;</button></div>
   <div class="lb-dots" id="lbDots"></div>
 </div></div>
+
+<!-- BACK TO BIO BAR -->
+<div class="back-bar">
+  <a href="https://avshi2-maker.github.io/avshi-bio/" class="back-btn">&#8592; חזור לדף הביו הקצר</a>
+  <span class="back-bar-date">פורטפוליו מלא &nbsp;·&nbsp; מרץ 2026</span>
+</div>
+
 <div class="hero">
-  <div class="hero-eyebrow">פורטפוליו מפתח · 2026</div>
+  <div class="hero-eyebrow">פורטפוליו מפתח · מרץ 2026</div>
   <h1 class="hero-name"><em>אבשי</em> ספיר</h1>
   <p class="hero-subtitle">מפתח עצמאי &nbsp;·&nbsp; כפר שמריהו, ישראל</p>
   <div class="hero-bio-box">
@@ -130,7 +141,7 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
   </div>
   <div class="social-btns">
     <a href="https://wa.me/972505231042?text=Hi%20Avshi%2C%20I%20saw%20your%20portfolio" class="social-btn whatsapp" target="_blank">&#128172; וואטסאפ</a>
-    <a href="mailto:avshi2@gmail.com" class="social-btn email">&#9993; אימייל</a>
+    <a href="mailto:avshi@sapirim.com" class="social-btn email">&#9993; אימייל</a>
     <a href="tel:+972505231042" class="social-btn phone">&#128222; 050-523-1042</a>
     <a href="https://www.facebook.com/profile.php?id=61583791313349" class="social-btn facebook" target="_blank">f פייסבוק</a>
   </div>
@@ -161,14 +172,15 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
 <div class="projects-list" id="projectsList"><div style="text-align:center;padding:3rem;color:#9a9688">טוען פרויקטים...</div></div>
 <footer>
   <div class="footer-links">
+    <a href="https://avshi2-maker.github.io/avshi-bio/" class="back-btn" style="border-radius:20px;">&#8592; דף ביו קצר</a>
     <a href="https://wa.me/972505231042" target="_blank">&#128172; וואטסאפ</a>
-    <a href="mailto:avshi2@gmail.com">&#9993; avshi2@gmail.com</a>
+    <a href="mailto:avshi@sapirim.com">&#9993; avshi@sapirim.com</a>
     <a href="tel:+972505231042">&#128222; 050-523-1042</a>
     <a href="https://www.facebook.com/profile.php?id=61583791313349" target="_blank">f פייסבוק</a>
     <a href="https://github.com/avshi2-maker" target="_blank">GitHub</a>
     <a href="#" onclick="window.print();return false">&#128424; הדפס PDF</a>
   </div>
-  <div class="footer-copy">אבשי ספיר &middot; פורטפוליו מפתח &middot; 2026 &middot; Built with Supabase + Vanilla JS</div>
+  <div class="footer-copy">אבשי ספיר &middot; פורטפוליו מפתח &middot; מרץ 2026 &middot; Built with Supabase + Vanilla JS</div>
 </footer>
 <script>
 /* ── Supabase config ── */
