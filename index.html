@@ -141,7 +141,7 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
   </div>
   <div class="social-btns">
     <a href="https://wa.me/972505231042?text=Hi%20Avshi%2C%20I%20saw%20your%20portfolio" class="social-btn whatsapp" target="_blank">&#128172; וואטסאפ</a>
-    <a href="/cdn-cgi/l/email-protection#ec8d9a9f8485ac9f8d9c859e8581c28f8381" class="social-btn email">&#9993; אימייל</a>
+    <a href="/cdn-cgi/l/email-protection#a6c7d0d5cecfe6d5c7d6cfd4cfcb88c5c9cb" class="social-btn email">&#9993; אימייל</a>
     <a href="tel:+972505231042" class="social-btn phone">&#128222; 050-523-1042</a>
     <a href="https://www.facebook.com/profile.php?id=61583791313349" class="social-btn facebook" target="_blank">f פייסבוק</a>
   </div>
@@ -749,7 +749,7 @@ function renderCard(p,idx){
   var numStr = String(p.number||idx+1).padStart(2,'0');
   var eyeBtn = p.screenshot_url?'<div class="eye-wrap"><button class="eye-btn" onclick="openLightbox('+idx+')">&#128065; צילום</button></div>':'';
   return '<div class="pcard" id="pcard-'+p.id+'" data-tags="'+(p.tags||[]).join(' ')+'">'
-    +'<div class="pcard-header" onclick="openLightbox('+idx+')">'
+    +'<div class="pcard-header" onclick="openLightbox('+p.id+')">'
     +'<div class="pcard-num">'+numStr+'</div>'
     +'<div class="pcard-main">'
     +'<div class="pcard-title">'+p.name+'</div>'
@@ -852,9 +852,12 @@ function showLbProject(projects){
   if(lbImg&&p.screenshot_url){lbImg.style.opacity='0.3';lbImg.src=p.screenshot_url+'?t='+Date.now();lbImg.onload=function(){lbImg.style.opacity='1';};lbImg.onerror=function(){lbImg.src=p.screenshot_url;lbImg.onload=function(){lbImg.style.opacity='1';};lbImg.onerror=function(){lbImg.style.opacity='0.4';};};}
 }
 
-function openLightbox(idx){
+function openLightbox(pid){
   var projects=filteredProjects.length?filteredProjects:allProjects;
-  lbIndex=idx||0;
+  // find by id
+  var found=0;
+  for(var i=0;i<projects.length;i++){if(projects[i].id==pid){found=i;break;}}
+  lbIndex=found;
   if(lightbox)lightbox.classList.add('open');
   showLbProject(projects);
 }
