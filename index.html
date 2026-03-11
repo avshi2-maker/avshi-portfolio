@@ -141,7 +141,7 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
   </div>
   <div class="social-btns">
     <a href="https://wa.me/972505231042?text=Hi%20Avshi%2C%20I%20saw%20your%20portfolio" class="social-btn whatsapp" target="_blank">&#128172; וואטסאפ</a>
-    <a href="/cdn-cgi/l/email-protection#78190e0b1011380b1908110a1115561b1715" class="social-btn email">&#9993; אימייל</a>
+    <a href="/cdn-cgi/l/email-protection#ec8d9a9f8485ac9f8d9c859e8581c28f8381" class="social-btn email">&#9993; אימייל</a>
     <a href="tel:+972505231042" class="social-btn phone">&#128222; 050-523-1042</a>
     <a href="https://www.facebook.com/profile.php?id=61583791313349" class="social-btn facebook" target="_blank">f פייסבוק</a>
   </div>
@@ -849,7 +849,7 @@ function showLbProject(projects){
   if(lbPrev)lbPrev.disabled=lbIndex===0;
   if(lbNext)lbNext.disabled=lbIndex===projects.length-1;
   if(lbDots)lbDots.querySelectorAll('.lb-dot').forEach(function(d,i){d.classList.toggle('active',i===lbIndex);});
-  if(lbImg&&p.screenshot_url){lbImg.style.opacity='0.3';lbImg.src=p.screenshot_url;lbImg.onload=function(){lbImg.style.opacity='1';};lbImg.onerror=function(){lbImg.style.opacity='0.3';};}
+  if(lbImg&&p.screenshot_url){lbImg.style.opacity='0.3';lbImg.src=p.screenshot_url+'?t='+Date.now();lbImg.onload=function(){lbImg.style.opacity='1';};lbImg.onerror=function(){lbImg.src=p.screenshot_url;lbImg.onload=function(){lbImg.style.opacity='1';};lbImg.onerror=function(){lbImg.style.opacity='0.4';};};}
 }
 
 function openLightbox(idx){
