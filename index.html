@@ -141,7 +141,7 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
   </div>
   <div class="social-btns">
     <a href="https://wa.me/972505231042?text=Hi%20Avshi%2C%20I%20saw%20your%20portfolio" class="social-btn whatsapp" target="_blank">&#128172; וואטסאפ</a>
-    <a href="/cdn-cgi/l/email-protection#e9889f9a8180a99a8899809b8084c78a8684" class="social-btn email">&#9993; אימייל</a>
+    <a href="/cdn-cgi/l/email-protection#78190e0b1011380b1908110a1115561b1715" class="social-btn email">&#9993; אימייל</a>
     <a href="tel:+972505231042" class="social-btn phone">&#128222; 050-523-1042</a>
     <a href="https://www.facebook.com/profile.php?id=61583791313349" class="social-btn facebook" target="_blank">f פייסבוק</a>
   </div>
@@ -182,7 +182,6 @@ footer{padding:2rem 1.5rem;border-top:1px solid rgba(240,192,64,.1);text-align:c
   </div>
   <div class="footer-copy">אבשי ספיר &middot; פורטפוליו מפתח &middot; מרץ 2026 &middot; Built with Vanilla JS · Static · No backend</div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 var PROJECTS_DATA = [
   {
@@ -428,7 +427,7 @@ var PROJECTS_DATA = [
     "status": "live",
     "live_url": "https://avshi2-maker.github.io/ROI_Clinic_2026/",
     "github_url": "https://github.com/avshi2-maker/ROI_Clinic_2026",
-    "screenshot_url": "https://upwwluofaanmfugxnywi.supabase.co/storage/v1/object/public/portfolio-screenshots/Roni_Clinic_2026 _empty.png",
+    "screenshot_url": "https://upwwluofaanmfugxnywi.supabase.co/storage/v1/object/public/portfolio-screenshots/Roni_Clinic_2026.png",
     "tech_stack": [
       "HTML5",
       "Interactive Calculator",
@@ -448,7 +447,7 @@ var PROJECTS_DATA = [
     "status": "live",
     "live_url": "https://avshi2-maker.github.io/Therapist_private_ROI_Simulator/",
     "github_url": "https://github.com/avshi2-maker/Therapist_private_ROI_Simulator",
-    "screenshot_url": "https://upwwluofaanmfugxnywi.supabase.co/storage/v1/object/public/portfolio-screenshots/private_therapist_ROI_Simulator__empty.png",
+    "screenshot_url": "https://upwwluofaanmfugxnywi.supabase.co/storage/v1/object/public/portfolio-screenshots/private_therapist_ROI.png",
     "tech_stack": [
       "HTML5",
       "Calculator",
@@ -468,7 +467,7 @@ var PROJECTS_DATA = [
     "status": "live",
     "live_url": "https://avshi2-maker.github.io/Pizza_builder-for-therapist-Tier/",
     "github_url": "https://github.com/avshi2-maker/Pizza_builder-for-therapist-Tier",
-    "screenshot_url": "https://upwwluofaanmfugxnywi.supabase.co/storage/v1/object/public/portfolio-screenshots/Pizza_Builder-empty.png",
+    "screenshot_url": "https://upwwluofaanmfugxnywi.supabase.co/storage/v1/object/public/portfolio-screenshots/Pizza_Builder.png",
     "tech_stack": [
       "HTML5",
       "Interactive UX",
@@ -724,7 +723,7 @@ var PROJECTS_DATA = [
 ];
 </script>
 <script>
-/* ── Static data ── */
+
 
 var allProjects      = [];
 var filteredProjects = [];
@@ -875,7 +874,7 @@ document.addEventListener('keydown',function(e){
 });
 
 
-/* ══ INIT - Static Data (no Supabase needed) ══ */
+/* ══ INIT - Static Data ══ */
 (function(){
   var loader=document.getElementById('loader');
   function hide(){if(!loader)return;loader.style.opacity='0';setTimeout(function(){loader.style.display='none';},400);}
@@ -883,11 +882,9 @@ document.addEventListener('keydown',function(e){
   filteredProjects = allProjects.slice();
   renderAll(allProjects);
   buildJumpMenu(allProjects);
-  var countEl=document.getElementById('projectCount');
-  if(countEl)countEl.textContent=allProjects.length;
+  var c=document.getElementById('projectCount');if(c)c.textContent=allProjects.length;
   hide();
 })();
-
 </script>
 </body>
 </html>
